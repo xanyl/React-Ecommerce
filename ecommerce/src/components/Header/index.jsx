@@ -11,10 +11,10 @@ const Header = () => {
         <span className="ml-3 text-xl">Ycommerce</span>
       </a>
       <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-        <a className="mr-5 hover:text-gray-900">First Link</a>
-        <a className="mr-5 hover:text-gray-900">Second Link</a>
-        <a className="mr-5 hover:text-gray-900">Third Link</a>
-        <a className="mr-5 hover:text-gray-900">Fourth Link</a>
+        <a className="mr-5 hover:text-gray-900">Home</a>
+        <a className="mr-5 hover:text-gray-900">Categories</a>
+        <a className="mr-5 hover:text-gray-900">About</a>
+        <a className="mr-5 hover:text-gray-900">Contact</a>
       </nav>
       <button className="inline-flex items-center text-white bg-indigo-400 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-700 hover:text-cyan-50 rounded text-base mt-4 md:mt-0">Cart
         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
