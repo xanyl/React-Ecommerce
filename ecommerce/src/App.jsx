@@ -1,5 +1,6 @@
 // import './App.css'
 
+import FooterCard from "./components/Footer";
 import Header from "./components/Header";
 import "./index.css";
 import Home from "./modules/Home";
@@ -9,6 +10,7 @@ function App() {
     <>
       <Header />
       <Home />
+      <FooterCard />
     </>
   );
 }
