@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 const Product = () => {
   const { id } = useParams();
@@ -13,7 +14,8 @@ const Product = () => {
     };
     fetchProduct();
   }, [id]);
-  {!Object.keys(product).length > 0 &&  <div>Product Not Found</div>}
+  if(!Object.keys(product).length > 0) return <div className="flex m-20 justify-center  font-bold"><Loading /></div>
+  // {!Object.keys(product).length > 0 &&  <Loading />}
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">

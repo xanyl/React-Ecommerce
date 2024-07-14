@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Products = ({ products = [] }) => {
   return (
     <section className="text-gray-600 body-font">
@@ -15,7 +17,7 @@ const Products = ({ products = [] }) => {
             console.log(product, "product");
             const { id, title, price, description, category, image } = product;
             return (
-              <div className="lg:w-1/4 md:w-1/2 p-4 w-full hover:cursor-pointer border border-opacity-30" key={id}>
+              <Link to={`/products/${id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full hover:cursor-pointer border border-opacity-30" key={id}>
                 <a className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -32,7 +34,7 @@ const Products = ({ products = [] }) => {
                   </h2>
                   <p className="mt-1 text-md font-semibold">${price}</p>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
