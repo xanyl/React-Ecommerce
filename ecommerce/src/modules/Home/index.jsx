@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Features from "../../components/Features";
 import Hero from "../../components/Hero";
-import Products from "../../components/Products";
+import Products from "../../components/ProductCard";
 import StatsCard from "../../components/Stats";
 
 const Home = () => {

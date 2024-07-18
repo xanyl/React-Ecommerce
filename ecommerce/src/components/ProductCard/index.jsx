@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Products = ({ products = [] }) => {
+const ProductCard = ({ products = [] }) => {
   return (
     <section className="text-gray-600 body-font">
       <div className="flex flex-col text-center w-full">
@@ -43,4 +43,4 @@ const Products = ({ products = [] }) => {
   );
 };
 
-export default Products;
+export default ProductCard;
