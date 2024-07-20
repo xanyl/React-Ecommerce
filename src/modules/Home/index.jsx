@@ -17,16 +17,29 @@ const Home = () => {
     };
     fetchProducts();
   }, []);
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch(
+        "https://fakestoreapi.com/products/categories"
+      );
+      const data = await response.json();
+      setCategories(data);
+    };
+    fetchCategories();
+  }, []);
+  if (categories.length === 0) return <>Loading...</>;
   return (
     <>
       <Hero />
+      <Features cards={categories} />
       {products.length > 0 ? (
         <Products products={products} />
       ) : (
         <div>Loading...</div>
       )}
       <Products />
-      <Features />
       <StatsCard />
     </>
   );

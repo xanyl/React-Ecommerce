@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Features from "../../components/Features";
 import ProductCard from "../../components/ProductCard";
-
+ 
 const Products = () => {
   const [categories,setCategories] = useState ([])
   useEffect (() =>{
