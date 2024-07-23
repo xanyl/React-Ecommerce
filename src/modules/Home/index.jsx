@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import Features from "../../components/Features";
+
 import Hero from "../../components/Hero";
 import Products from "../../components/ProductCard";
 import StatsCard from "../../components/Stats";
+import Categories from "../../components/Categories";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Features cards={categories} />
+      <Categories />
       {products.length > 0 ? (
         <Products products={products} />
       ) : (
