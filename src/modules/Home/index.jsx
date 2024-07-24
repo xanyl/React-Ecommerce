@@ -40,7 +40,7 @@ const Home = () => {
       ) : (
         <div>Loading...</div>
       )}
-      <Products />
+      {/* <Products /> */}
       <StatsCard />
     </>
   );
