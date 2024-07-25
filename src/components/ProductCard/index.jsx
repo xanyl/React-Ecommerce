@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const ProductCard = ({ products = [] }) => {
   return (
     <section className="text-gray-600 body-font">

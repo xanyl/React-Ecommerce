@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Features = ({cards = []}) => {
   return (
     <section className="text-gray-600 body-font">
@@ -13,7 +15,7 @@ const Features = ({cards = []}) => {
         <div className="flex flex-wrap -m-4">
           {cards.map((card) => {
             return (
-              <div className="p-4 md:w-1/3 cursor-pointer " key={card} >
+              <Link to={`/catagories/${card}`} className="p-4 md:w-1/3 cursor-pointer " key={card} >
                 <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                   <div className="flex items-center mb-3">
                     <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
@@ -55,7 +57,7 @@ const Features = ({cards = []}) => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

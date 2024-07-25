@@ -7,6 +7,7 @@ import Home from "./modules/Home";
 import { Routes, Route } from "react-router-dom";
 import Product from "./modules/Product";
 import Products from "./modules/Products";
+import CategoryProducts from "./modules/CategoryProducts";
 function App() {
   return (
     <>
@@ -15,7 +16,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/products" element={<Products />} />
-        <Route path="*" element={<div>Not Found 404</div>} />
+        <Route path="/categories/:name" element={<CategoryProducts/>} />
+        <Route path="*" element={<div className="text-3xl flex align-middle justify-center p-20 m-20">Not Found 404</div>} />
       </Routes>
       {/* <Home /> */}
       <FooterCard />
