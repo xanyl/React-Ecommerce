@@ -14,14 +14,45 @@ const Product = () => {
     };
     fetchProduct();
   }, [id]);
-  if(!Object.keys(product).length > 0) return <div className="flex m-20 justify-center  font-bold"><Loading /></div>
-  // {!Object.keys(product).length > 0 &&  <Loading />}
+  if (!Object.keys(product).length > 0)
+    return (
+      <div className="flex m-20 justify-center  font-bold">
+        <Loading />
+      </div>
+    );
+
+  const handleCart = (product, redirect) => {
+    console.log(product);
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const isProductExist = cart.find((item) => item.id === product.id);
+    if (isProductExist) {
+      const updatedCart = cart.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            count: item.count + 1,
+          };
+        }
+        return item;
+      });
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      const newCart = [...cart, { ...product, count: 1 }];
+      localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
+    alert("Product Addded Successfully");
+    if (redirect) {
+      window.location.href = "/cart";
+    }
+  };
+
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
-            alt= {product?.title}
+            alt={product?.title}
             className="lg:w-1/2 w-full lg:h-auto h-64 max-h-[400px] object-contain object-center rounded"
             src={product?.image}
           />
@@ -169,12 +200,18 @@ const Product = () => {
                 ${product?.price}
               </span>
               <div className="flex">
-              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-2">
-                Buy Now
-              </button>
-              <button className="flex ml-auto text-black border-indigo-500 border py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded">
-                Add to Cart
-              </button>
+                <button
+                  onClick={() => handleCart(product, true)}
+                  className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-2"
+                >
+                  Buy Now
+                </button>
+                <button
+                  onClick={() => handleCart(product)}
+                  className="flex ml-auto text-black border-indigo-500 border py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded"
+                >
+                  Add to Cart
+                </button>
               </div>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg
