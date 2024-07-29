@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Cart = () => {
-  const [carts, setCarts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [carts, setCarts] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  const [shippingCost, setShippingCost] = useState(10);
 
   const handleRemove = (id) => {
     const newCart = carts.filter((item) => item.id !== id);
@@ -14,7 +17,10 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(carts));
   }, [carts]);
 
-  const totalCost = carts.reduce((acc, item) => acc + item.price * item.count, 0);
+  const totalCost = carts.reduce(
+    (acc, item) => acc + item.price * item.count,
+    0
+  );
 
   const handleCheckout = () => {
     alert("Checkout Successful");
@@ -48,14 +54,19 @@ const Cart = () => {
 
           {carts.map((cart) => {
             return (
-              <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" key={cart.id}>
+              <div
+                className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5"
+                key={cart.id}
+              >
                 <div className="flex w-2/5">
                   <div className="w-20  mr-4">
                     <img src={cart.image} alt={cart.title} />
                   </div>
                   <div className="flex flex-col justify-between ml-4 flex-grow">
                     <span className="font-bold text-sm">{cart.title}</span>
-                    <span className="text-red-500 text-xs">{cart.category}</span>
+                    <span className="text-red-500 text-xs">
+                      {cart.category}
+                    </span>
                     <button
                       className="font-semibold hover:text-red-500 text-gray-500 text-xs w-5"
                       onClick={() => handleRemove(cart.id)}
@@ -113,14 +124,19 @@ const Cart = () => {
             Order Summary
           </h1>
           <div className="flex justify-between mt-10 mb-5">
-            <span className="font-semibold text-sm uppercase">Items {carts.length}</span>
+            <span className="font-semibold text-sm uppercase">
+              Items {carts.length}
+            </span>
             <span className="font-semibold text-sm">${totalCost}</span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
               Shipping
             </label>
-            <select className="block p-2 text-gray-600 w-full text-sm">
+            <select
+              className="block p-2 text-gray-600 w-full text-sm"
+              onChange={(e) => setShippingCost(Number(e.target.value))}
+            >
               <option value={10}>Standard shipping - $10.00</option>
               <option value={20}>Express shipping - $20.00</option>
               <option value={30}>Next day delivery - $30.00</option>
@@ -133,12 +149,10 @@ const Cart = () => {
               style={{ color: "red" }}
               id="promo"
               name="promo"
-              
               onChange={(e) => setPromo(e.target.value)}
               required
               autoFocus
               autoComplete="off"
-              
             >
               Promo Code
             </label>
@@ -155,10 +169,11 @@ const Cart = () => {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>${totalCost + 10}</span>
+              <span>${totalCost + shippingCost}</span>
             </div>
-            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-            onClick={() => handleCheckout()}
+            <button
+              className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              onClick={() => handleCheckout()}
             >
               Checkout
             </button>
