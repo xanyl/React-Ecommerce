@@ -1,24 +1,35 @@
-
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Cart = () => {
-  const carts = JSON.parse(localStorage.getItem("cart")) || [];
-  
-  
+  const [carts, setCarts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+
   const handleRemove = (id) => {
     const newCart = carts.filter((item) => item.id !== id);
+    setCarts(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
-   
   };
 
- 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(carts));
+  }, [carts]);
+
+  const totalCost = carts.reduce((acc, item) => acc + item.price * item.count, 0);
+
+  const handleCheckout = () => {
+    alert("Checkout Successful");
+  };
+  const setPromo = (promo) => {
+    console.log(promo);
+  };
+
   return (
     <div className="container mx-auto mt-10">
       <div className="flex shadow-md my-10">
         <div className="w-3/4 bg-white px-10 py-10">
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-            <h2 className="font-semibold text-2xl">{carts?.length} Items</h2>
+            <h2 className="font-semibold text-2xl">{carts.length} Items</h2>
           </div>
           <div className="flex mt-10 mb-5">
             <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
@@ -37,25 +48,20 @@ const Cart = () => {
 
           {carts.map((cart) => {
             return (
-              <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" key={cart?.id}>
+              <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" key={cart.id}>
                 <div className="flex w-2/5">
-                  <div className="w-20">
-                    <img
-                    
-                      src={cart?.image}
-                      alt={cart?.title}
-                    />
+                  <div className="w-20  mr-4">
+                    <img src={cart.image} alt={cart.title} />
                   </div>
                   <div className="flex flex-col justify-between ml-4 flex-grow">
-                    <span className="font-bold text-sm">{cart?.title}</span>
-                    <span className="text-red-500 text-xs">{cart?.category}</span>
-                    <a
-                      href="#"
-                      className="font-semibold hover:text-red-500 text-gray-500 text-xs"
-                      onClick={() => handleRemove()}
+                    <span className="font-bold text-sm">{cart.title}</span>
+                    <span className="text-red-500 text-xs">{cart.category}</span>
+                    <button
+                      className="font-semibold hover:text-red-500 text-gray-500 text-xs w-5"
+                      onClick={() => handleRemove(cart.id)}
                     >
                       Remove
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <div className="flex justify-center w-1/5">
@@ -68,7 +74,8 @@ const Cart = () => {
                   <input
                     className="mx-2 border text-center w-8"
                     type="text"
-                    value="1"
+                    value={cart.count}
+                    readOnly
                   />
                   <svg
                     className="fill-current text-gray-600 w-3"
@@ -78,10 +85,10 @@ const Cart = () => {
                   </svg>
                 </div>
                 <span className="text-center w-1/5 font-semibold text-sm">
-                  ${cart?.price}
+                  ${cart.price}
                 </span>
                 <span className="text-center w-1/5 font-semibold text-sm">
-                  ${cart?.price * cart?.count}
+                  ${cart.price * cart.count}
                 </span>
               </div>
             );
@@ -106,21 +113,32 @@ const Cart = () => {
             Order Summary
           </h1>
           <div className="flex justify-between mt-10 mb-5">
-            <span className="font-semibold text-sm uppercase">Items 3</span>
-            <span className="font-semibold text-sm">$590</span>
+            <span className="font-semibold text-sm uppercase">Items {carts.length}</span>
+            <span className="font-semibold text-sm">${totalCost}</span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
               Shipping
             </label>
             <select className="block p-2 text-gray-600 w-full text-sm">
-              <option>Standard shipping - $10.00</option>
+              <option value={10}>Standard shipping - $10.00</option>
+              <option value={20}>Express shipping - $20.00</option>
+              <option value={30}>Next day delivery - $30.00</option>
             </select>
           </div>
           <div className="py-10">
             <label
               htmlFor="promo"
               className="font-semibold inline-block mb-3 text-sm uppercase"
+              style={{ color: "red" }}
+              id="promo"
+              name="promo"
+              
+              onChange={(e) => setPromo(e.target.value)}
+              required
+              autoFocus
+              autoComplete="off"
+              
             >
               Promo Code
             </label>
@@ -137,9 +155,11 @@ const Cart = () => {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>$600</span>
+              <span>${totalCost + 10}</span>
             </div>
-            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+            onClick={() => handleCheckout()}
+            >
               Checkout
             </button>
           </div>
