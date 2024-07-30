@@ -64,7 +64,7 @@ const Cart = () => {
                   </div>
                   <div className="flex flex-col justify-between ml-4 flex-grow">
                     <span className="font-bold text-sm">{cart.title}</span>
-                    <span className="text-red-500 text-xs">
+                    <span className="text-red-500 text-xs capitalize">
                       {cart.category}
                     </span>
                     <button

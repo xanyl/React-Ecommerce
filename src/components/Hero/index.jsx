@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LoadingHero from "./loadingHero";
 
 const Hero = () => {
   const [data, setData] = useState({});
@@ -14,6 +15,8 @@ const Hero = () => {
     };
     fetchProduct();
   }, []);
+  if (!Object.keys(data).length > 0)
+    return <div className="flex m-20 justify-center  font-bold"><LoadingHero /></div>;
 
   return (
     <section className="text-gray-600 body-font">

@@ -18,7 +18,7 @@ const Loading = () => {
     </div>
     <span className="sr-only">Loading...</span>
 </div>
-  )
+  ) 
 }
 
 export default Loading
