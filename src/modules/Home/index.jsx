@@ -30,7 +30,12 @@ const Home = () => {
     };
     fetchCategories();
   }, []);
-  if (categories.length === 0) return <>Loading...</>;
+  if (categories.length === 0)
+    return (
+      <div>
+        <h1 className="flex align-middle justify-center m-20 font-semibold text-3xl "  >Loading...</h1>
+      </div>
+    );
   return (
     <>
       <Hero />
