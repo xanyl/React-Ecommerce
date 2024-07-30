@@ -9,6 +9,8 @@ import Product from "./modules/Product";
 import Products from "./modules/Products";
 import CategoryProduct from "./modules/CategoryProducts";
 import Cart from "./modules/Cart";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/categories/:name" element={<CategoryProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<div className="text-3xl flex align-middle justify-center p-20 m-20">Not Found 404</div>} />
