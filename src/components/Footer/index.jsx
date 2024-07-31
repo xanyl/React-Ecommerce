@@ -19,7 +19,7 @@ const FooterCard = () => {
             <span className="ml-3 text-xl">Ycommerce</span>
           </a>
           <p className="mt-2 text-sm text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum ipsam quibusdam officia quia, omnis consequatur voluptate iusto! Iusto laborum similique 
+            Your one stop shop for all your online needs. With our wide range of products, we have got you covered. The most affordable prices, the best quality, and the fastest delivery.
           </p>
         </div>
         <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
@@ -106,7 +106,7 @@ const FooterCard = () => {
           <p className="text-gray-500 text-sm text-center sm:text-left">
             © 2024 Ycommerce —
             <a
-              href="https://twitter.com/knyttneve"
+              href="https://github.com/xanyl"
               rel="noopener noreferrer"
               className="text-gray-600 ml-1"
               target="_blank"
