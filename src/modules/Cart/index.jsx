@@ -39,14 +39,26 @@ const Cart = () => {
   };
   const handleDecrement = (id) => {
     const updatedCart = carts.map((item) => {
-      
-        if (item.id === id && item.count > 1) {
-          return { ...item, count: item.count - 1 };
-        }
-      
+      if (item.id === id && item.count > 1) {
+        return { ...item, count: item.count - 1 };
+      }
+
       return item;
     });
     setCarts(updatedCart);
+  };
+  const handleEmpty = () => {
+    if (carts.length === 0) {
+      return (
+        <div className="flex justify-center  items-center container mx-auto mt-10 h-[50%]">
+          <div className="ListItem">
+            <h1 className="text-center text-gray-700 text-2xl">
+              Your cart is empty
+            </h1>
+          </div>
+        </div>
+      );
+    }
   };
 
   return (
@@ -126,7 +138,7 @@ const Cart = () => {
               </div>
             );
           })}
-
+          {handleEmpty()}
           <Link
             to={"/products"}
             className="flex font-semibold text-indigo-600 text-sm mt-10"
