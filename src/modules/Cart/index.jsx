@@ -28,6 +28,26 @@ const Cart = () => {
   const setPromo = (promo) => {
     console.log(promo);
   };
+  const handleIncrement = (id) => {
+    const updatedCart = carts.map((item) => {
+      if (item.id === id) {
+        return { ...item, count: item.count + 1 };
+      }
+      return item;
+    });
+    setCarts(updatedCart);
+  };
+  const handleDecrement = (id) => {
+    const updatedCart = carts.map((item) => {
+      
+        if (item.id === id && item.count > 1) {
+          return { ...item, count: item.count - 1 };
+        }
+      
+      return item;
+    });
+    setCarts(updatedCart);
+  };
 
   return (
     <div className="container mx-auto mt-10">
@@ -75,10 +95,11 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-                <div className="flex justify-center w-1/5">
+                <div className="flex justify-center w-1/5 cursor-pointer">
                   <svg
                     className="fill-current text-gray-600 w-3"
                     viewBox="0 0 448 512"
+                    onClick={() => handleDecrement(cart?.id)}
                   >
                     <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                   </svg>
@@ -89,8 +110,9 @@ const Cart = () => {
                     readOnly
                   />
                   <svg
-                    className="fill-current text-gray-600 w-3"
+                    className="fill-current text-gray-600 w-3 cursor-pointer"
                     viewBox="0 0 448 512"
+                    onClick={() => handleIncrement(cart?.id)}
                   >
                     <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                   </svg>
