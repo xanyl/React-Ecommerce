@@ -130,10 +130,10 @@ const Cart = () => {
                   </svg>
                 </div>
                 <span className="text-center w-1/5 font-semibold text-sm">
-                  ${cart.price}
+                  ${(cart.price).toFixed(2)}
                 </span>
                 <span className="text-center w-1/5 font-semibold text-sm">
-                  ${cart.price * cart.count}
+                  ${(cart.price * cart.count).toFixed(2)} 
                 </span>
               </div>
             );
@@ -161,7 +161,7 @@ const Cart = () => {
             <span className="font-semibold text-sm uppercase">
               Items {carts.length}
             </span>
-            <span className="font-semibold text-sm">${totalCost}</span>
+            <span className="font-semibold text-sm">${totalCost.toFixed(2)}</span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
@@ -203,7 +203,7 @@ const Cart = () => {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>${totalCost + shippingCost}</span>
+              <span>${(totalCost + shippingCost).toFixed(2)}</span>
             </div>
             <button
               className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"

@@ -1,34 +1,62 @@
-import { Link } from "react-router-dom";
 
-// eslint-disable-next-line react/prop-types
+import  { useState } from 'react';
+import { Link } from "react-router-dom";
+import { Star, ShoppingCart, Heart } from 'lucide-react';
+
 const ProductCard = ({ products = [] }) => {
+  const [favorites, setFavorites] = useState({});
+
+  const toggleFavorite = (id) => {
+    setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
-    <section className="text-gray-600 body-font">
-      
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-wrap -m-4">
+    <section className="bg-gray-100 py-12">
+      <div className="container mx-auto px-4">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => {
-            console.log(product, "product");
-            const { id, title, price, category, image } = product;
+            const { id, title, price, category, image, rating } = product;
             return (
-              <Link to={`/products/${id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full hover:cursor-pointer border border-opacity-30" key={id}>
-                <a className="block relative h-48 rounded overflow-hidden">
-                  <img
-                    alt="ecommerce"
-                    className="object-contain object-center w-full h-full  shadow-2xl"
-                    src={image}
-                  />
-                </a>
-                <div className="mt-4">
-                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase">
-                    {category}
-                  </h3>
-                  <h2 className="text-gray-900 title-font text-lg font-medium">
-                    {title}
-                  </h2>
-                  <p className="mt-1 text-md font-semibold">${price}</p>
+              <div key={id} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <Link to={`/products/${id}`} className="block">
+                  <div className="relative pt-[100%]">
+                    <img 
+                      src={image} 
+                      alt={title}
+                      className="absolute top-0 left-0 w-full h-full object-contain p-4"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-sm text-gray-500 uppercase tracking-wide">{category}</p>
+                    <h3 className="mt-2 text-lg font-semibold leading-tight truncate">{title}</h3>
+                    <div className="mt-1 flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          className={i < Math.round(rating.rate) ? "text-yellow-400" : "text-gray-300"}
+                          fill={i < Math.round(rating.rate) ? "currentColor" : "none"}
+                        />
+                      ))}
+                      <span className="ml-2 text-sm text-gray-600">({rating.count})</span>
+                    </div>
+                    <p className="mt-2 text-lg font-bold text-blue-600">${price.toFixed(2)}</p>
+                  </div>
+                </Link>
+                <div className="px-4 pb-4 flex justify-between items-center">
+                  <button className="flex items-center space-x-1 text-green-600 hover:text-green-800">
+                    <ShoppingCart size={20} />
+                    <span>Add to Cart</span>
+                  </button>
+                  <button 
+                    onClick={() => toggleFavorite(id)}
+                    className={`p-2 rounded-full ${favorites[id] ? 'bg-red-100 text-red-500' : 'bg-gray-100 text-gray-500'} hover:bg-red-200 transition-colors duration-300`}
+                  >
+                    <Heart size={20} fill={favorites[id] ? "currentColor" : "none"} />
+                  </button>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>
