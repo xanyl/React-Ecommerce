@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const FooterCard = () => {
   return (
     <footer className="text-gray-600 body-font border-t-2">
       <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+          <Link className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -17,7 +19,7 @@ const FooterCard = () => {
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
             <span className="ml-3 text-xl">Ycommerce</span>
-          </a>
+          </Link>
           <p className="mt-2 text-sm text-gray-500">
             Your one stop shop for all your online needs. With our wide range of products, we have got you covered. The most affordable prices, the best quality, and the fastest delivery.
           </p>

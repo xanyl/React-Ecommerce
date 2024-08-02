@@ -47,7 +47,7 @@ const Features = ({ cards = [] }) => {
                     <span className="uppercase font-semibold">{card}</span>{" "}
                     category.
                   </p>
-                  <a className="mt-3 text-indigo-500 inline-flex items-center">
+                  <Link className="mt-3 text-indigo-500 inline-flex items-center">
                     Learn More
                     <svg
                       fill="none"
@@ -60,7 +60,7 @@ const Features = ({ cards = [] }) => {
                     >
                       <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Link>
